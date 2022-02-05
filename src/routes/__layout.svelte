@@ -8,20 +8,21 @@
     });
 
     return {
-      props: { navigation: data }
+      props: { navigationQuery: data }
     };
   };
 </script>
 
 <script lang="ts">
+  import type { NavigationQuery } from '$lib/types/NavQuery';
   import Header from '$lib/components/header/Header.svelte';
   import '../app.css';
-  import type { NavigationQuery } from '$lib/types/NavQuery';
-  export let navigation: NavigationQuery;
+  export let navigationQuery: NavigationQuery;
+  let links = navigationQuery?.allPages?.edges;
 </script>
 
-<Header {navigation} />
+<Header {links} />
 
-<main>
+<main class="h-[90vh] w-screen max-w-screen">
   <slot />
 </main>
